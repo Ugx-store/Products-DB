@@ -38,6 +38,9 @@ namespace WebApi
 
             services.AddDbContext<ProductDbContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("ProductDB")));
+
+            services.AddScoped<IDLRepo, DLRepo>();
+            services.AddScoped<IBLRepo, BLRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
