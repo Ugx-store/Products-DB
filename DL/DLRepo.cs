@@ -33,9 +33,10 @@ namespace DL
                 .Select(p => new Product()
                 {
                     Id = p.Id,
-                    Name = p.Name,
+                    Description = p.Description,
                     Condition = p.Condition,
-                    Price = p.Price,
+                    ItemPrice = p.ItemPrice,
+                    OriginalPrice = p.OriginalPrice,
                     Quantity = p.Quantity,
                     OwnerName = p.OwnerName,
                     Category = p.Category,
@@ -43,7 +44,9 @@ namespace DL
                     Brand = p.Brand,
                     Color = p.Color,
                     Size = p.Size,
-                    Info = p.Info,
+                    Age = p.Age,
+                    Location = p.Location,
+                    FreeDelivery = p.FreeDelivery,
                     DateTimeAdded = p.DateTimeAdded,
                     Like = _context.Likes.Where(l => l.ProductId == p.Id).Select(l => new Like()
                     {
@@ -61,9 +64,10 @@ namespace DL
                 .Select(p => new Product()
                 {
                     Id = p.Id,
-                    Name = p.Name,
+                    Description = p.Description,
                     Condition = p.Condition,
-                    Price = p.Price,
+                    ItemPrice = p.ItemPrice,
+                    OriginalPrice = p.OriginalPrice,
                     Quantity = p.Quantity,
                     OwnerName = p.OwnerName,
                     Category = p.Category,
@@ -71,7 +75,9 @@ namespace DL
                     Brand = p.Brand,
                     Color = p.Color,
                     Size = p.Size,
-                    Info = p.Info,
+                    Age = p.Age,
+                    Location = p.Location,
+                    FreeDelivery = p.FreeDelivery,
                     DateTimeAdded = p.DateTimeAdded,
                     Like = _context.Likes.Where(l => l.ProductId == p.Id).Select(l => new Like()
                     {
@@ -96,9 +102,10 @@ namespace DL
             return new Product()
             {
                 Id = product.Id,
-                Name = product.Name,
+                Description = product.Description,
                 Condition = product.Condition,
-                Price = product.Price,
+                ItemPrice = product.ItemPrice,
+                OriginalPrice = product.OriginalPrice,
                 Quantity = product.Quantity,
                 OwnerName = product.OwnerName,
                 Category = product.Category,
@@ -106,7 +113,9 @@ namespace DL
                 Brand = product.Brand,
                 Color = product.Color,
                 Size = product.Size,
-                Info = product.Info,
+                Age = product.Age,
+                Location = product.Location,
+                FreeDelivery = product.FreeDelivery,
                 DateTimeAdded = product.DateTimeAdded
             };
         }
