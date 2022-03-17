@@ -24,6 +24,6 @@ namespace Models
         public string Size { get; set; }
         public bool FreeDelivery { get; set; }
         public DateTime DateTimeAdded { get; set; }
-        public List<Like> Like { get; set; }
+        public List<Like> Like { get; set; } 
     }
 }
