@@ -11,8 +11,8 @@ namespace Models
         public int Id { get; set; }
         public string Description { get; set; }
         public string Condition { get; set; }
-        public decimal ItemPrice { get; set; }
-        public decimal OriginalPrice { get; set; }
+        public long ItemPrice { get; set; }
+        public long OriginalPrice { get; set; }
         public int Quantity { get; set; }
         public string OwnerName { get; set; }
         public string Category { get; set; }
