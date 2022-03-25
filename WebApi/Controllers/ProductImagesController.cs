@@ -38,12 +38,20 @@ namespace WebApi.Controllers
 
         // POST api/<ProductImagesController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ProductImage newImage)
+        public async Task<IActionResult> Post([FromBody] List<ProductImage> newImage)
         {
-            ProductImage image = await _bl.AddProductImageAsync(newImage);
-            if(image != null)
+            List<ProductImage> images = new List<ProductImage>();
+
+            for(int i = 0; i<newImage.Count; i++)
             {
-                return Created("api/[controller]", image);
+                ProductImage image = await _bl.AddProductImageAsync(newImage[i]);
+                images.Add(image);
+            }
+            
+            
+            if(images.Count == newImage.Count)
+            {
+                return Created("api/[controller]", "Success");
             }
             else
             {
