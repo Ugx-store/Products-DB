@@ -164,6 +164,7 @@ namespace DL
         //Product Images CRUD
         public async Task<ProductImage> AddProductImageAsync(ProductImage image)
         {
+            
             await _context.AddAsync(image);
             await _context.SaveChangesAsync();
             _context.ChangeTracker.Clear();
@@ -173,13 +174,14 @@ namespace DL
         public async Task<ProductImage> GetOneProductImageAsync(int id)
         {
             return await _context.ProductImages
+                .AsNoTracking()
                 .Select(i => new ProductImage()
                 {
                     Id = i.Id,
                     ProductId = i.ProductId,
                     ImageData = i.ImageData
                 })
-                .FirstOrDefaultAsync(i => i.Id == id);
+                .FirstOrDefaultAsync(i => i.ProductId == id);
         }
         public async Task<List<ProductImage>> GetAllProductImagesAsync(int productId)
         {

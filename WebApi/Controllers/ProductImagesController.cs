@@ -41,7 +41,15 @@ namespace WebApi.Controllers
         public async Task<IActionResult> Post([FromBody] ProductImage newImage)
         {
             ProductImage image = await _bl.AddProductImageAsync(newImage);
-            return Created("api/[controller]", image);
+            if(image != null)
+            {
+                return Created("api/[controller]", image);
+            }
+            else
+            {
+                return Created("api/[controller]", "failure");
+            }
+            
         }
 
         // PUT api/<ProductImagesController>/5
