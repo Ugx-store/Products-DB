@@ -45,7 +45,8 @@ namespace DL
                     Color = p.Color,
                     Size = p.Size,
                     Age = p.Age,
-                    Location = p.Location,
+                    Town = p.Town,
+                    City = p.City,
                     FreeDelivery = p.FreeDelivery,
                     DateTimeAdded = p.DateTimeAdded,
                     Like = _context.Likes.Where(l => l.ProductId == p.Id).Select(l => new Like()
@@ -76,7 +77,8 @@ namespace DL
                     Color = p.Color,
                     Size = p.Size,
                     Age = p.Age,
-                    Location = p.Location,
+                    Town = p.Town,
+                    City = p.City,
                     FreeDelivery = p.FreeDelivery,
                     DateTimeAdded = p.DateTimeAdded,
                     Like = _context.Likes.Where(l => l.ProductId == p.Id).Select(l => new Like()
@@ -114,7 +116,8 @@ namespace DL
                 Color = product.Color,
                 Size = product.Size,
                 Age = product.Age,
-                Location = product.Location,
+                Town = product.Town,
+                City = product.City,
                 FreeDelivery = product.FreeDelivery,
                 DateTimeAdded = product.DateTimeAdded
             };

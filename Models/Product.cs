@@ -20,7 +20,8 @@ namespace Models
         public string Brand { get; set; }
         public string Color { get; set; }
         public string Age { get; set; }
-        public string Location { get; set; }
+        public string Town { get; set; }
+        public string City { get; set; }
         public string Size { get; set; }
         public bool FreeDelivery { get; set; }
         public DateTime DateTimeAdded { get; set; }
