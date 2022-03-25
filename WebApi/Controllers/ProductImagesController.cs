@@ -40,16 +40,16 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] List<ProductImage> newImage)
         {
-            List<ProductImage> images = new List<ProductImage>();
+            int count = 0;
 
             for(int i = 0; i<newImage.Count; i++)
             {
                 ProductImage image = await _bl.AddProductImageAsync(newImage[i]);
-                images.Add(image);
+                count++;
             }
             
             
-            if(images.Count == newImage.Count)
+            if(count == newImage.Count)
             {
                 return Created("api/[controller]", "Success");
             }
