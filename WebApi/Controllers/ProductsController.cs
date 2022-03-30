@@ -36,6 +36,21 @@ namespace WebApi.Controllers
             }
         }
 
+        // GET: api/<ProductsController>/kimuli
+        [HttpGet("user-products/{username}")]
+        public async Task<IActionResult> GetUserProducts(string username)
+        {
+            List<Product> products = await _bl.GetAllUserProductsAsync(username);
+            if (products.Count != 0)
+            {
+                return Ok(products);
+            }
+            else
+            {
+                return NoContent();
+            }
+        }
+
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)

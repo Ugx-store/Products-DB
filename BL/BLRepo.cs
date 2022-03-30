@@ -30,6 +30,10 @@ namespace BL
         {
             return await _repo.GetAllProductsAsync();
         }
+        public async Task<List<Product>> GetAllUserProductsAsync(string username)
+        {
+            return await _repo.GetAllUserProductsAsync(username);
+        }
         public async Task DeleteProductAsync(int id)
         {
             await _repo.DeleteProductAsync(id);

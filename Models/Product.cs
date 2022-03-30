@@ -26,5 +26,6 @@ namespace Models
         public bool FreeDelivery { get; set; }
         public DateTime DateTimeAdded { get; set; }
         public List<Like> Like { get; set; } 
+        public List<ProductImage> ProductImages { get; set; }
     }
 }

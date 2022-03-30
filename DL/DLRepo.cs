@@ -86,9 +86,56 @@ namespace DL
                         Id = l.Id,
                         LikerName = l.LikerName,
                         ProductId = l.ProductId
+                    }).ToList(),
+                    ProductImages = _context.ProductImages.Where(q => q.ProductId == p.Id).Select(q => new ProductImage()
+                    {
+                        Id = q.Id,
+                        ProductId = q.ProductId,
+                        ImageData = q.ImageData
                     }).ToList()
                 }).ToListAsync();
         }
+
+        public async Task<List<Product>> GetAllUserProductsAsync(string username)
+        {
+            return await _context.Products
+                .Include(l => l.Like)
+                .Include(q => q.ProductImages)
+                .Where(p => p.OwnerName == username)
+                .Select(p => new Product()
+                {
+                    Id = p.Id,
+                    Description = p.Description,
+                    Condition = p.Condition,
+                    ItemPrice = p.ItemPrice,
+                    OriginalPrice = p.OriginalPrice,
+                    Quantity = p.Quantity,
+                    OwnerName = p.OwnerName,
+                    Category = p.Category,
+                    SubCategory = p.SubCategory,
+                    Brand = p.Brand,
+                    Color = p.Color,
+                    Size = p.Size,
+                    Age = p.Age,
+                    Town = p.Town,
+                    City = p.City,
+                    FreeDelivery = p.FreeDelivery,
+                    DateTimeAdded = p.DateTimeAdded,
+                    Like = _context.Likes.Where(l => l.ProductId == p.Id).Select(l => new Like()
+                    {
+                        Id = l.Id,
+                        LikerName = l.LikerName,
+                        ProductId = l.ProductId
+                    }).ToList(),
+                    ProductImages = _context.ProductImages.Where(q => q.ProductId == p.Id).Select(q => new ProductImage()
+                    {
+                        Id = q.Id,
+                        ProductId = q.ProductId,
+                        ImageData = q.ImageData
+                    }).ToList()
+                }).ToListAsync();
+        }
+
         public async Task DeleteProductAsync(int id)
         {
             _context.Products.Remove(await GetOneProductAsync(id));

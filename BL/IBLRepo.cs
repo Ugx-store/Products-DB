@@ -11,6 +11,7 @@ namespace BL
         Task<Product> AddProductAsync(Product product);
         Task<Product> GetOneProductAsync(int id);
         Task<List<Product>> GetAllProductsAsync();
+        Task<List<Product>> GetAllUserProductsAsync(string username);
         Task DeleteProductAsync(int id);
         Task<Product> UpdateProductAsync(Product product);
 
