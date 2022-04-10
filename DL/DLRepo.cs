@@ -54,6 +54,12 @@ namespace DL
                         Id = l.Id,
                         LikerName = l.LikerName,
                         ProductId = l.ProductId
+                    }).ToList(),
+                    ProductImages = _context.ProductImages.Where(q => q.ProductId == p.Id).Select(q => new ProductImage()
+                    {
+                        Id = q.Id,
+                        ProductId = q.ProductId,
+                        ImageData = q.ImageData
                     }).ToList()
                 })
                 .FirstOrDefaultAsync(p => p.Id == id);
