@@ -15,5 +15,6 @@ namespace DL
         public DbSet<Product> Products { get; set; }
         public DbSet<Like> Likes { get; set; }
         public DbSet<ProductImage> ProductImages { set; get; }
+        public DbSet<Boost> Boost { set; get; }
     }
 }

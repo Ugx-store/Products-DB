@@ -25,5 +25,10 @@ namespace BL
         Task<List<ProductImage>> GetAllProductImagesAsync(int productId);
         Task DeleteProductImageAsync(int id);
         Task<ProductImage> UpdateProductImageAsync(ProductImage image);
+
+        //Product Boosts CRUD
+        Task<Boost> AddBoostAsync(Boost boost);
+        Task<List<Boost>> GetAllBoostedItems();
+        Task<Boost> UpdateProductBoost(Boost boost);
     }
 }

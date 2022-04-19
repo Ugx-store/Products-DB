@@ -3,53 +3,23 @@ using System;
 using DL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DL.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    partial class ProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220419012551_ProductDBMigration9")]
+    partial class ProductDBMigration9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-            modelBuilder.Entity("Models.Boost", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<DateTime>("BoostEndTime")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("BoostPrice")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("BoostStartTime")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<bool>("Boosted")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Username")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Boost");
-                });
 
             modelBuilder.Entity("Models.Like", b =>
                 {
@@ -151,15 +121,6 @@ namespace DL.Migrations
                     b.ToTable("ProductImages");
                 });
 
-            modelBuilder.Entity("Models.Boost", b =>
-                {
-                    b.HasOne("Models.Product", null)
-                        .WithMany("Boost")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Models.Like", b =>
                 {
                     b.HasOne("Models.Product", null)
@@ -180,8 +141,6 @@ namespace DL.Migrations
 
             modelBuilder.Entity("Models.Product", b =>
                 {
-                    b.Navigation("Boost");
-
                     b.Navigation("Like");
 
                     b.Navigation("ProductImages");

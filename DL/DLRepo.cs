@@ -30,6 +30,8 @@ namespace DL
             return await _context.Products
                 .AsNoTracking()
                 .Include(l => l.Like)
+                .Include(q => q.ProductImages)
+                .Include(b => b.Boost)
                 .Select(p => new Product()
                 {
                     Id = p.Id,
@@ -60,14 +62,27 @@ namespace DL
                         Id = q.Id,
                         ProductId = q.ProductId,
                         ImageData = q.ImageData
+                    }).ToList(),
+                    Boost = _context.Boost.Where(b => b.ProductId == p.Id && b.Boosted == true).Select(b => new Boost()
+                    {
+                        Id = b.Id,
+                        ProductId = b.ProductId,
+                        Username = b.Username,
+                        Boosted = b.Boosted,
+                        BoostPrice = b.BoostPrice,
+                        BoostStartTime = b.BoostStartTime,
+                        BoostEndTime = b.BoostEndTime
                     }).ToList()
                 })
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
+
         public async Task<List<Product>> GetAllProductsAsync()
         {
             return await _context.Products
                 .Include(l => l.Like)
+                .Include(q => q.ProductImages)
+                .Include(b => b.Boost)
                 .Select(p => new Product()
                 {
                     Id = p.Id,
@@ -98,6 +113,16 @@ namespace DL
                         Id = q.Id,
                         ProductId = q.ProductId,
                         ImageData = q.ImageData
+                    }).ToList(),
+                    Boost = _context.Boost.Where(b => b.ProductId == p.Id && b.Boosted == true).Select(b => new Boost()
+                    {
+                        Id = b.Id,
+                        ProductId = b.ProductId,
+                        Username = b.Username,
+                        Boosted = b.Boosted,
+                        BoostPrice = b.BoostPrice,
+                        BoostStartTime = b.BoostStartTime,
+                        BoostEndTime = b.BoostEndTime
                     }).ToList()
                 }).ToListAsync();
         }
@@ -107,6 +132,7 @@ namespace DL
             return await _context.Products
                 .Include(l => l.Like)
                 .Include(q => q.ProductImages)
+                .Include(b => b.Boost)
                 .Where(p => p.OwnerName == username)
                 .Select(p => new Product()
                 {
@@ -138,6 +164,16 @@ namespace DL
                         Id = q.Id,
                         ProductId = q.ProductId,
                         ImageData = q.ImageData
+                    }).ToList(),
+                    Boost = _context.Boost.Where(b => b.ProductId == p.Id && b.Boosted == true).Select(b => new Boost()
+                    {
+                        Id = b.Id,
+                        ProductId = b.ProductId,
+                        Username = b.Username,
+                        Boosted = b.Boosted,
+                        BoostPrice = b.BoostPrice,
+                        BoostStartTime = b.BoostStartTime,
+                        BoostEndTime = b.BoostEndTime
                     }).ToList()
                 }).ToListAsync();
         }
@@ -227,6 +263,7 @@ namespace DL
 
             return image;
         }
+        
         public async Task<ProductImage> GetOneProductImageAsync(int id)
         {
             return await _context.ProductImages
@@ -250,6 +287,7 @@ namespace DL
                     ImageData = i.ImageData
                 }).ToListAsync();
         }
+        
         public async Task DeleteProductImageAsync(int id)
         {
             _context.ProductImages.Remove(await GetOneProductImageAsync(id));
@@ -268,6 +306,49 @@ namespace DL
                 Id = image.Id,
                 ProductId = image.Id,
                 ImageData = image.ImageData
+            };
+        }
+
+        //------------- Boost CRUD -------------------
+        public async Task<Boost> AddBoostAsync(Boost boost)
+        {
+            await _context.AddAsync(boost);
+            await _context.SaveChangesAsync();
+            _context.ChangeTracker.Clear();
+
+            return boost;
+        }
+
+        public async Task<List<Boost>> GetAllBoostedItems()
+        {
+            return await _context.Boost
+                .Select(b => new Boost()
+                {
+                    Id = b.Id,
+                    ProductId = b.ProductId,
+                    Username = b.Username,
+                    Boosted = b.Boosted,
+                    BoostPrice = b.BoostPrice,
+                    BoostStartTime = b.BoostStartTime,
+                    BoostEndTime = b.BoostEndTime
+                }).ToListAsync();
+        }
+
+        public async Task<Boost> UpdateProductBoost(Boost boost)
+        {
+            _context.Boost.Update(boost);
+            await _context.SaveChangesAsync();
+            _context.ChangeTracker.Clear();
+
+            return new Boost()
+            {
+                Id = boost.Id,
+                ProductId = boost.ProductId,
+                Username = boost.Username,
+                Boosted = boost.Boosted,
+                BoostPrice = boost.BoostPrice,
+                BoostStartTime = boost.BoostStartTime,
+                BoostEndTime = boost.BoostEndTime
             };
         }
     }

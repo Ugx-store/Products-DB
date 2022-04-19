@@ -27,5 +27,6 @@ namespace Models
         public DateTime DateTimeAdded { get; set; }
         public List<Like> Like { get; set; } 
         public List<ProductImage> ProductImages { get; set; }
+        public List<Boost> Boost { get; set; }
     }
 }

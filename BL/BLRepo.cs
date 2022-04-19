@@ -75,6 +75,23 @@ namespace BL
         {
             return await _repo.UpdateProductImageAsync(image);
         }
+
+
+        //Product Boosts CRUD
+        public async Task<Boost> AddBoostAsync(Boost boost)
+        {
+            return await _repo.AddBoostAsync(boost);
+        }
+
+        public async Task<List<Boost>> GetAllBoostedItems()
+        {
+            return await _repo.GetAllBoostedItems();
+        }
+
+        public async Task<Boost> UpdateProductBoost(Boost boost)
+        {
+            return await _repo.UpdateProductBoost(boost);
+        }
     }
 }
 

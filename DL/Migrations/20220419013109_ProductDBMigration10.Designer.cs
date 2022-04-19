@@ -3,15 +3,17 @@ using System;
 using DL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DL.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    partial class ProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220419013109_ProductDBMigration10")]
+    partial class ProductDBMigration10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,9 +30,6 @@ namespace DL.Migrations
 
                     b.Property<DateTime>("BoostEndTime")
                         .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("BoostPrice")
-                        .HasColumnType("integer");
 
                     b.Property<DateTime>("BoostStartTime")
                         .HasColumnType("timestamp without time zone");
