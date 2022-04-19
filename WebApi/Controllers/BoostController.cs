@@ -41,7 +41,8 @@ namespace WebApi.Controllers
         public async Task<IActionResult> Post([FromBody] Boost newBoost)
         {
             Boost boost = await _bl.AddBoostAsync(newBoost);
-            if (boost == null)
+
+            if (boost != null)
             {
                 return Created("api/[controller]", boost);
             }
