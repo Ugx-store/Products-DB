@@ -57,7 +57,7 @@ namespace WebApi.Controllers
         public async Task<IActionResult> Put([FromBody]  Boost updatedBoost)
         {
             Boost boost = await _bl.UpdateProductBoost(updatedBoost);
-            if (boost == null)
+            if (boost != null)
             {
                 return Created("api/[controller]", boost);
             }
