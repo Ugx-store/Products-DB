@@ -274,7 +274,7 @@ namespace DL
                     ProductId = i.ProductId,
                     ImageData = i.ImageData
                 })
-                .FirstOrDefaultAsync(i => i.ProductId == id);
+                .FirstOrDefaultAsync(i => i.Id == id);
         }
         public async Task<List<ProductImage>> GetAllProductImagesAsync(int productId)
         {
