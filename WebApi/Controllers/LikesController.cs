@@ -50,5 +50,12 @@ namespace WebApi.Controllers
         {
             await _bl.DeleteLikeAsync(id);
         }
+
+        // DELETE api/<LikesController>/5
+        [HttpDelete("deleteLikes/{id}")]
+        public async Task DeleteLikes(int id)
+        {
+            await _bl.DeleteLikesAsync(id);
+        }
     }
 }

@@ -299,7 +299,7 @@ namespace DL
                 }).ToListAsync();
         }
         
-        public async Task DeleteProductImageAsync(int id)
+        public async Task DeleteProductImagesAsync(int id)
         {
             List<ProductImage> images = await GetAllProductImagesAsync(id);
             
@@ -309,6 +309,13 @@ namespace DL
                 await _context.SaveChangesAsync();
                 _context.ChangeTracker.Clear();
             }
+        }
+
+        public async Task DeleteProductImageAsync(int id)
+        {
+            _context.ProductImages.Remove(await GetOneProductImageAsync(id));
+            await _context.SaveChangesAsync();
+            _context.ChangeTracker.Clear();
         }
 
         public async Task<ProductImage> UpdateProductImageAsync(ProductImage image)

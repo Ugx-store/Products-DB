@@ -74,5 +74,11 @@ namespace WebApi.Controllers
         {
             await _bl.DeleteProductImageAsync(id);
         }
+
+        [HttpDelete("deleteImages/{id}")]
+        public async Task DeleteImages(int id)
+        {
+            await _bl.DeleteProductImagesAsync(id);
+        } 
     }
 }

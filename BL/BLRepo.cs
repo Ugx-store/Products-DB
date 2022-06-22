@@ -56,6 +56,10 @@ namespace BL
         {
             await _repo.DeleteLikeAsync(id);
         }
+        public async Task DeleteLikesAsync(int id)
+        {
+            await _repo.DeleteLikesAsync(id);
+        }
 
         //Product Images CRUD
         public async Task<ProductImage> AddProductImageAsync(ProductImage image)
@@ -69,6 +73,11 @@ namespace BL
         public async Task DeleteProductImageAsync(int id)
         {
             await _repo.DeleteProductImageAsync(id);
+        }
+
+        public async Task DeleteProductImagesAsync(int id)
+        {
+            await _repo.DeleteProductImagesAsync(id);
         }
 
         public async Task<ProductImage> UpdateProductImageAsync(ProductImage image)

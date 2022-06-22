@@ -19,11 +19,13 @@ namespace BL
         Task<Like> AddLikeAsync(Like like);
         Task<List<Like>> GetAllLikesAsync(int productId);
         Task DeleteLikeAsync(int id);
+        Task DeleteLikesAsync(int id);
 
         //Product Images CRUD
         Task<ProductImage> AddProductImageAsync(ProductImage image);
         Task<List<ProductImage>> GetAllProductImagesAsync(int productId);
         Task DeleteProductImageAsync(int id);
+        Task DeleteProductImagesAsync(int id);
         Task<ProductImage> UpdateProductImageAsync(ProductImage image);
 
         //Product Boosts CRUD

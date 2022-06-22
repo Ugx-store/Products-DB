@@ -22,12 +22,14 @@ namespace DL
         Task<Like> GetOneLikeAsync(int id);
         Task<List<Like>> GetAllLikesAsync(int productId);
         Task DeleteLikeAsync(int id);
+        Task DeleteLikesAsync(int id);
 
         //Product Images CRUD
         Task<ProductImage> AddProductImageAsync(ProductImage image);
         Task<ProductImage> GetOneProductImageAsync(int id);
         Task<List<ProductImage>> GetAllProductImagesAsync(int productId);
         Task DeleteProductImageAsync(int id);
+        Task DeleteProductImagesAsync(int id);
         Task<ProductImage> UpdateProductImageAsync(ProductImage image);
 
         //Product Boosts CRUD
