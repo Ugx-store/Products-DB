@@ -253,6 +253,17 @@ namespace DL
             _context.ChangeTracker.Clear();
         }
 
+        public async Task DeleteLikesAsync(int id)
+        {
+            List<Like> likes = await GetAllLikesAsync(id);
+            foreach(Like like in likes)
+            {
+                _context.Likes.Remove(like);
+                await _context.SaveChangesAsync();
+                _context.ChangeTracker.Clear();
+            }
+        }
+
         //Product Images CRUD
         public async Task<ProductImage> AddProductImageAsync(ProductImage image)
         {
