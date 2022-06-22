@@ -290,9 +290,14 @@ namespace DL
         
         public async Task DeleteProductImageAsync(int id)
         {
-            _context.ProductImages.Remove(await GetOneProductImageAsync(id));
-            await _context.SaveChangesAsync();
-            _context.ChangeTracker.Clear();
+            List<ProductImage> images = await GetAllProductImagesAsync(id);
+            
+            foreach(ProductImage image in images)
+            {
+                _context.ProductImages.Remove(image);
+                await _context.SaveChangesAsync();
+                _context.ChangeTracker.Clear();
+            }
         }
 
         public async Task<ProductImage> UpdateProductImageAsync(ProductImage image)
